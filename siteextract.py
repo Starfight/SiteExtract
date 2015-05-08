@@ -8,10 +8,10 @@ PARAM = "conf"+os.sep+"param.cfg"
 SITES = "conf"+os.sep+"sites.cfg"
 
 def startExtract():
-	engine = ExtractEngine(PARAM, SITES)
-	
+    engine = ExtractEngine(PARAM, SITES)
+    
 
 if __name__ == "__main__":
-	os.chdir(os.path.dirname(os.path.realpath(__file__)))
-	#TODO load config file and some arg
-	startExtract()
+    os.chdir(os.path.dirname(os.path.realpath(__file__)))
+    #TODO load config file and some arg
+    startExtract()
