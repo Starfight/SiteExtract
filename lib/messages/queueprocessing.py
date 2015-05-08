@@ -18,12 +18,12 @@ class QueueProcessing():
         """
         self._queue = Queue()
         self._subscriberList = []
-        self._ownprocess = Process(self.releaseEntry, args=self._queue)
+        self._ownprocess = Process(self.release_entry, args=self._queue)
         # Start processing
         self._running = True
         self._ownprocess.start()
         
-    def releaseEntry(self, queue):
+    def release_entry(self, queue):
         """
         Release message to all subscribers
         """
@@ -39,7 +39,7 @@ class QueueProcessing():
                 except:
                     queue.put(entry)
                     
-    def putEntry(self, entry):
+    def put_entry(self, entry):
         """
         Put a entry in queue
         """
@@ -63,7 +63,7 @@ class QueueProcessing():
         if self._subscriberList.count(method):
             self._subscriberList.remove(method)
             
-    def stopQueue(self):
+    def stop_queue(self):
         """
         Stop all processing 
         Warning: data may be lost !

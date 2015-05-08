@@ -43,7 +43,7 @@ class ArticleStruct(dict):
             # Fonction parent (dict)
             super(ArticleStruct, self).__setitem__(key, value)
             
-    def getItemsTupleString(self):
+    def get_items_tuple_string(self):
         """
         Return items in a tuple as a string (insert in musql db)
         """

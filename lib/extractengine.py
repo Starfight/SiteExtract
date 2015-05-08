@@ -29,22 +29,22 @@ class ExtractEngine():
         
         # create site extract
         self.sitelist = []
-        for site, cfg in self._sitecfg.getSitesInfo().items():
+        for site, cfg in self._sitecfg.get_sites_info().items():
             se = SiteExtract(site, cfg)
             
         
-    def processSitesExtract(self):
+    def process_sites_extract(self):
         """
         Run sites extract
         """
         for site in self.sitelist:
             pass
             
-    def processEntry(self, entry):
+    def process_entry(self, entry):
         """
         Insert/Update data in Mysql database
         """
-        insertquery = self._insert_product.format(entry.getItemsTupleString())
+        insertquery = self._insert_product.format(entry.get_items_tuple_string())
         try:
             self._mysql.query(insertquery)
             return True

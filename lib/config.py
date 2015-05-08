@@ -25,16 +25,16 @@ class Config():
         except: 
             print("Unable to read cfg file", path)
             
-    def getSitesInfo(self):
+    def get_sites_info(self):
         """
         Get dic with site info by section
         """
         sites = {}
         for site in self._cfparser.sections():
-            sites[site] = self._getSiteSectionInfo(site)
+            sites[site] = self._get_site_section_info(site)
         return sites
         
-    def _getSiteSectionInfo(self, sitesection):
+    def _get_site_section_info(self, sitesection):
         """
         Get dic with site info
         """

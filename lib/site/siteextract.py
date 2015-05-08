@@ -25,12 +25,12 @@ class SiteExtract:
         self._siteinfos = siteinfos
         
         #test
-        result = self.getPageSearch("table")
-        for url in self.getArticleLinks(result):
+        result = self.get_page_search("table")
+        for url in self.get_article_links(result):
             print(url)
-            print(self.getArticleInfo(url))
+            print(self.get_article_info(url))
     
-    def getPageSearch(self, keyword):
+    def get_page_search(self, keyword):
         """
         Research a keyword on the page and return page result
         """
@@ -44,7 +44,7 @@ class SiteExtract:
         result = urllib2.urlopen(reqAdress)
         return result.read().decode('utf-8')
         
-    def getNbPages(self, page):
+    def get_nb_pages(self, page):
         """
         Return page number for current search
         """
@@ -63,7 +63,7 @@ class SiteExtract:
         nbpage = nbarticles / nbarticlesperpage + 1
         return nbpage
         
-    def getArticleLinks(self, page):
+    def get_article_links(self, page):
         """
         Return current page article links as a list
         """
@@ -77,7 +77,7 @@ class SiteExtract:
         linklist = list(set(linklist))
         return linklist
         
-    def getArticleInfo(self, url):
+    def get_article_info(self, url):
         """
         Return information for an article url
         """
@@ -100,7 +100,7 @@ class SiteExtract:
         #return dic result
         return dicInfos
         
-    def debugSite(self, page):
+    def debug_site(self, page):
         file = open("sitedebug.html", "w")
         file.write(page)
         file.close()
