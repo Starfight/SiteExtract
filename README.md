@@ -2,8 +2,14 @@
 ######Data extract from web pages
 
 ### Dependencies
-* Python 3.5
-* MySQL-python 1.2.5
+* Python 2.7
+* PyMySQL (0.6.6)
+
+### Installation
+```
+easy_install pip
+pip install PyMySQL
+```
 
 ### Configuration
 Use [conf/param.cfg](http://github.com/Starfight/SiteExtract/blob/master/conf/param.cfg) to set MySQL connexions variables 
