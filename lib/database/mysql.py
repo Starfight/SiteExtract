@@ -23,6 +23,7 @@ class Mysql:
         #parameters
         if ':' in host:
             self._host, self._port = host.split(':')
+            self._port = int(self._port)
         else:
             self._host = host
             self._port = 3306
@@ -49,7 +50,7 @@ class Mysql:
                     self._connected = True
                 except:
                     self._connected = False
-                    print("Unable to connect to database", self._database, "on host", self._host)
+                    print "Unable to connect to database", self._database, "on host", self._host
                     traceback.print_exc()
                     time.sleep(2) 
             else:
@@ -60,7 +61,7 @@ class Mysql:
                         self._connected = False
                 except:
                     self._connected = False
-                    print("Unable to ping database", self._database, "on host", self._host)
+                    print "Unable to ping database", self._database, "on host", self._host
                     time.sleep(2)
                 
     def query(self, query):

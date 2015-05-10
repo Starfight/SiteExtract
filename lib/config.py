@@ -6,7 +6,7 @@
  Description: Class to add config
 """
 
-from configparser import ConfigParser
+from ConfigParser import ConfigParser
 import os
 import re
 
@@ -23,7 +23,7 @@ class Config():
         try:
             self._cfparser.readfp(open(path, 'r'))
         except: 
-            print("Unable to read cfg file", path)
+            print "Unable to read cfg file", path
             
     def get_sites_info(self):
         """
@@ -53,4 +53,7 @@ class Config():
         """
         Redirect __getitem__ func
         """
-        return self._cfparser.__getitem__(key)
+        dic = {}
+        for k, v in self._cfparser.items(key):
+            dic[k] = v
+        return dic

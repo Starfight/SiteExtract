@@ -6,7 +6,7 @@
  Description: Class to extract one site
 """
 
-import urllib.request as urllib2
+import urllib2
 from lib.site.articlestruct import ArticleStruct
 
 class SiteExtract:
@@ -27,8 +27,8 @@ class SiteExtract:
         #test
         result = self.get_page_search("table")
         for url in self.get_article_links(result):
-            print(url)
-            print(self.get_article_info(url))
+            print url
+            print self.get_article_info(url)
     
     def get_page_search(self, keyword):
         """

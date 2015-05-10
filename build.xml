@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Automatisation des tests avec ant" default="Copy and Extract" basedir=".">
+	<property name="extract.dir" value="/opt/pyengines"/>
+	<property name="extract.file" value="siteextract.py"/>
+	
+	<!-- Copy files to server -->
+	<target name="Copy on server">
+		<echo message="Start copy on server" />
+		<sshexec command="mkdir -p ${extract.dir}" host="katana" username="root" password="password" trust="yes"/>
+		<scp todir="root:password@katana:/opt/pyengines" trust="yes">
+			<fileset dir=".">
+				<include name="**/*.py"/>
+				<include name="**/*.cfg"/>
+			</fileset>
+		</scp>
+		<echo message="Copy on serveur with success" />
+	</target> 
+	<!-- Start extractor -->
+	<target name="Start extract">
+		<sshexec command="python ${extract.dir}/${extract.file}" host="katana" username="root" password="password" trust="yes"/>
+	</target>
+	<!-- Copy and extract -->
+	<target name="Copy and Extract" depends="Copy on server, Start extract">
+	</target>
+</project>
