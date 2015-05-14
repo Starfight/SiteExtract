@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project name="Automatisation des tests avec ant" default="Copy and Extract" basedir=".">
+<project name="SiteExtract" default="Copy and Extract" basedir=".">
 	<property name="extract.dir" value="/opt/pyengines"/>
 	<property name="extract.file" value="siteextract.py"/>
 	
