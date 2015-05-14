@@ -12,7 +12,7 @@
 	<target name="Copy on server">
 		<echo message="Start copy on server" />
 		<sshexec command="mkdir -p ${extract.dir}" host="${server.host}" username="${server.user}" password="${server.pwd}" trust="yes"/>
-		<scp todir="${server.user}:${server.pwd}@${server.host}:/opt/pyengines" trust="yes">
+		<scp todir="${server.user}:${server.pwd}@${server.host}:${extract.dir}" trust="yes">
 			<fileset dir=".">
 				<include name="**/*.py"/>
 				<include name="**/*.cfg"/>
