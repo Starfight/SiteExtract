@@ -24,7 +24,7 @@ setup(
         'site_extract.messages',
         'site_extract.site'
     ],
-    scripts=['bin/siteextract.py'],
+    scripts=['scripts/siteextract.py'],
     url='https://github.com/Starfight/SiteExtract',
     description='Collect data from websites',
     install_requires=requirements,
