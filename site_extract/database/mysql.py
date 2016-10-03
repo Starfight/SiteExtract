@@ -10,6 +10,7 @@ import time
 import pymysql
 from multiprocessing import Process
 import traceback
+import logging
 
 class Mysql:
     """
@@ -48,10 +49,11 @@ class Mysql:
                 try:
                     self._dbconnection = pymysql.connect(host=self._host, port=self._port, user=self._user, passwd=self._password, db=self._database)
                     self._connected = True
+                    logging.info("Connection to database {0} on host {1} has been establish".format(self._database, self._host))
                 except:
                     self._connected = False
-                    print "Unable to connect to database", self._database, "on host", self._host
-                    traceback.print_exc()
+                    logging.critical("Unable to connect to database {0} on host {1}".format(self._database, self._host))
+                    logging.debug(traceback.print_exc())
                     time.sleep(2) 
             else:
                 try:
@@ -61,8 +63,12 @@ class Mysql:
                         self._connected = False
                 except:
                     self._connected = False
-                    print "Unable to ping database", self._database, "on host", self._host
+                    logging.critical("Unable to ping database {0} on host {1}".format(self._database, self._host))
                     time.sleep(2)
+
+        # close when leaving the loop
+        self._dbconnection.close()
+        logging.info("Connection to database {0} on host {1} has been closed".format(self._database, self._host))
                 
     def query(self, query):
         """
@@ -78,8 +84,9 @@ class Mysql:
                     res = cursor.fetchall()
                     cursor.close()
                     return res
-            except:
-                traceback.print_exc()
+            except Exception as e:
+                logging.critical("Error during query {0}: {1}".format(query, repr(e)))
+                logging.debug(traceback.print_exc())
         return None
             
     def disconnect(self):
