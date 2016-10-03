@@ -6,7 +6,7 @@
  Description: Class to extract one site
 """
 
-import urllib2
+import requests
 from site_extract.site.articlestruct import ArticleStruct
 
 class SiteExtract:
@@ -41,8 +41,8 @@ class SiteExtract:
         reqAdress = reqAdress.replace(self.ARTICLESPERPAGE_TXT, str(self._siteinfos.get("int_articlesperpage")))
         
         # send request adress
-        result = urllib2.urlopen(reqAdress)
-        return result.read().decode('utf-8')
+        result = requests.get(reqAdress)
+        return result.text
         
     def get_nb_pages(self, page):
         """
@@ -82,8 +82,8 @@ class SiteExtract:
         Return information for an article url
         """
         # send request adress
-        page = urllib2.urlopen(url)
-        page = page.read().decode('utf-8')
+        page = requests.get(url)
+        page = page.text
         
         # search info about article
         dicInfos = ArticleStruct()
